@@ -105,6 +105,10 @@
   --radius-xl: var(--radius-xl);
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   user-select: none;
   background: var(--background);
@@ -115,6 +119,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 .snap-container {

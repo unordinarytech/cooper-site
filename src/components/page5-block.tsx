@@ -55,12 +55,12 @@ export default function Page5Block() {
   return (
     <div
       ref={containerRef}
-      className="relative z-10 w-full h-full bg-[#111111] flex flex-col items-center justify-center gap-4 px-12 md:px-20 pb-20 leading-none select-none"
+      className="relative z-10 w-full h-full bg-[#111111] flex flex-col items-center justify-center gap-3 sm:gap-4 px-5 sm:px-12 md:px-20 pb-28 sm:pb-20 leading-snug sm:leading-none select-none overflow-hidden"
     >
       <Scene3DFooter />
       <div
         data-sc="idle"
-        className="relative z-10 font-mono text-[clamp(1.8rem,5vw,3.5rem)] font-medium tracking-tighter leading-tight text-white max-w-4xl text-center"
+        className="relative z-10 font-mono text-[clamp(1.25rem,5.5vw,3.5rem)] font-medium tracking-tighter leading-tight text-white max-w-4xl text-center text-balance"
         style={FOOTER_VARS}
       >
         Help us test Coord.
@@ -68,7 +68,7 @@ export default function Page5Block() {
       <div className="opacity-60">
         <div
           data-sc="idle"
-          className="relative z-10 font-mono text-[clamp(1.8rem,5vw,3.5rem)] font-medium tracking-tighter leading-tight text-white max-w-4xl text-center"
+          className="relative z-10 font-mono text-[clamp(1.25rem,5.5vw,3.5rem)] font-medium tracking-tighter leading-tight text-white max-w-4xl text-center text-balance"
           style={FOOTER_VARS}
         >
           We&rsquo;re still in development.
@@ -76,14 +76,17 @@ export default function Page5Block() {
       </div>
       <div
         data-sc="idle"
-        className="relative z-10 font-mono text-[clamp(1.8rem,5vw,3.5rem)] font-medium tracking-tighter leading-tight text-white max-w-4xl text-center"
+        className="relative z-10 font-mono text-[clamp(1.25rem,5.5vw,3.5rem)] font-medium tracking-tighter leading-tight text-white max-w-4xl text-center text-balance"
         style={FOOTER_VARS}
       >
         We&rsquo;re looking for early testers and contributors.
       </div>
-      <p className="relative z-10 font-mono text-[clamp(1.8rem,5vw,3.5rem)] font-medium tracking-tighter leading-tight text-[#007a55]">
+      <p className="relative z-10 font-mono text-[clamp(1.1rem,4.5vw,3.5rem)] font-medium tracking-tighter leading-tight text-[#007a55] text-center text-balance px-2">
         Follow the work at{" "}
-        <a href="https://unordinary.software" className="underline underline-offset-4 hover:text-[#009966] transition-colors">
+        <a
+          href="https://unordinary.software"
+          className="underline underline-offset-4 hover:text-[#009966] transition-colors break-words"
+        >
           unordinary.software
         </a>
       </p>

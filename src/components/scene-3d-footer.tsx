@@ -7,7 +7,12 @@ import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
 const WORD = "COORD";
-const BOX_H = 200;
+const BOX_H_DESKTOP = 200;
+const BOX_H_MOBILE = 120;
+
+function boxHeight() {
+  return window.innerWidth < 640 ? BOX_H_MOBILE : BOX_H_DESKTOP;
+}
 
 export default function Scene3DFooter() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -17,7 +22,8 @@ export default function Scene3DFooter() {
     if (!container) return;
 
     const W = window.innerWidth;
-    const H = BOX_H;
+    let H = boxHeight();
+    container.style.height = `${H}px`;
 
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setClearColor(0x000000, 0);
@@ -64,14 +70,32 @@ export default function Scene3DFooter() {
       color: "#009966",
     });
 
+    const wordGroup = new THREE.Group();
+    scene.add(wordGroup);
+    let wordWidth = 0;
+
+    function fitWordToViewport() {
+      if (wordWidth <= 0) return;
+      const viewW = camera.right - camera.left;
+      const scale = Math.min(1, (viewW * 0.88) / wordWidth);
+      wordGroup.scale.setScalar(scale);
+    }
+
     function resize() {
+      const el = containerRef.current;
+      if (!el) return;
       const w = window.innerWidth;
+      H = boxHeight();
+      el.style.height = `${H}px`;
       const a = w / H;
       camera.left = (frustumSize * a) / -2;
       camera.right = (frustumSize * a) / 2;
+      camera.top = frustumSize / 2;
+      camera.bottom = frustumSize / -2;
       camera.updateProjectionMatrix();
       renderer.setSize(w, H);
       effect.setSize(w, H);
+      fitWordToViewport();
     }
     window.addEventListener("resize", resize);
     resize();
@@ -101,7 +125,7 @@ export default function Scene3DFooter() {
           tg.dispose();
         }
 
-        const totalWidth =
+        wordWidth =
           widths.reduce((a, b) => a + b, 0) +
           letterSpacing * (WORD.length - 1);
 
@@ -128,7 +152,7 @@ export default function Scene3DFooter() {
           const mesh = new THREE.Mesh(tg, material);
           tg.translate(-(bb.min.x + w / 2), -(bb.min.y + h / 2), 0);
 
-          const cx = cursorX + w / 2 - totalWidth / 2;
+          const cx = cursorX + w / 2 - wordWidth / 2;
           cursorX += w + letterSpacing;
 
           mesh.position.set(cx, 0, 0);
@@ -139,9 +163,11 @@ export default function Scene3DFooter() {
             (Math.random() - 0.5) * 0.6,
           );
 
-          scene.add(mesh);
+          wordGroup.add(mesh);
           meshes.push(mesh);
         }
+
+        fitWordToViewport();
 
         // gentle continuous rotation
         function animate() {
@@ -165,8 +191,8 @@ export default function Scene3DFooter() {
   return (
     <div
       ref={containerRef}
-      className="absolute bottom-0 left-0 right-0 z-0"
-      style={{ height: BOX_H, pointerEvents: "none" }}
+      className="absolute bottom-0 left-0 right-0 z-0 h-[120px] sm:h-[200px]"
+      style={{ pointerEvents: "none" }}
     />
   );
 }
