@@ -53,12 +53,24 @@ export default function Page2Block() {
       }
     >
       {/* top-right box */}
-      <div className="absolute top-[12%] right-[10%] w-[clamp(180px,22vw,360px)] bg-[#007a55]"
-           style={{ aspectRatio: "3 / 1" }} />
+      <div className="absolute top-[12%] right-[10%] w-[clamp(200px,25vw,400px)] bg-[#007a55]"
+           style={{ aspectRatio: "3 / 1" }} ></div>
 
       {/* bottom box */}
       <div className="absolute bottom-[15%] left-[8%] w-[clamp(140px,17vw,280px)] bg-[#007a55]"
-           style={{ aspectRatio: "3 / 2" }} />
+           style={{ aspectRatio: "3 / 2" }} >
+
+            <div className="absolute inset-0 flex flex-col justify-end p-2.5">
+              <pre className="font-mono text-[6px] leading-none text-white/80 whitespace-pre select-none">
+{`▐▛███▜▌   Claude Code v2.1.217
+▝▜█████▛▘  Opus 4.6 (1M) · medium effort
+  ▘▘ ▝▝     API Usage Billing`}
+              </pre>
+              <div className="w-full gap-1 mt-1.5 border-t border-white/30 pt-1.5 text-white/60 flex items-center font-mono text-[9px]">
+                &gt; <span>wait its already implemented?</span>
+              </div>
+            </div>
+           </div>
 
       <div className="relative z-10 max-w-6xl">
         {LINES.map((line, i) => (
