@@ -46,7 +46,7 @@ export default function TyperBlock() {
   return (
     <div
       ref={containerRef}
-      className="relative z-10 w-full max-w-6xl px-8 py-24 leading-none select-none"
+      className="relative z-10 w-full max-w-6xl px-4 sm:px-8 py-16 sm:py-24 leading-none select-none"
       style={
         {
           "--sc-fg": "#18181b",
@@ -60,7 +60,7 @@ export default function TyperBlock() {
         <div
           key={line}
           data-sc="idle"
-          className={`font-mono text-[clamp(3rem,10vw,8rem)] font-medium tracking-tighter ${
+          className={`font-mono text-[clamp(1.75rem,9vw,8rem)] font-medium tracking-tighter ${
             i === 0 ? "text-left" : i === 1 ? "text-center" : "text-right"
           }`}
         >
